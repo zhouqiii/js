@@ -3,7 +3,7 @@
     <body>
         typeof(6):值类型：string boolean undefined number引用类型：object（[],{},null） function
         
-        jsi变量按照存储方式分为值类型和引用类型
+        js变量按照存储方式分为值类型和引用类型
 
         var a={age:20};
         var b=a;
