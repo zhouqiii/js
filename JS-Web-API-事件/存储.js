@@ -8,3 +8,4 @@
     //html5专为存储设计，容量大5M
     //API简单易用就只有：localStorage.setItem(key，value)和localStorage.getItem(key)建议使用try()catch封装
     //都可以本地存储，sessionStorage浏览器关了，数据清理掉，而localStorage只要不手动清理，数据一直本地存储
+//三者区别：容量/是否在ajax/api使用
