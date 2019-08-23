@@ -1,0 +1,10 @@
+//cookies
+    //本身用于客户端和服务器端通信
+    //由本地存储的功能，也可以用来本地存储，使用方法为document.cookies=...(获取或者修改)
+    //缺点：存储量太小，只有4KB（因为要向服务器端发送请求每次都携带cookies，所以要很小）
+        //所有的http请求都携带cookies，影响获取资源的效率
+        //API简单需要封装才能使用document.cookies=.
+//localStorage和sessionStorage
+    //html5专为存储设计，容量大5M
+    //API简单易用就只有：localStorage.setItem(key，value)和localStorage.getItem(key)建议使用try()catch封装
+    //都可以本地存储，sessionStorage浏览器关了，数据清理掉，而localStorage只要不手动清理，数据一直本地存储

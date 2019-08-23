@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+            <div id="div1">
+                <p id="p1">激活</p>
+                <a href="https://www.imooc.com" id="a1">immoc1</a>
+                <a href="https://www.imooc.com" id="a2">immoc2</a>
+                <a href="https://www.imooc.com" id="a3">immoc3</a>
+                <a href="https://www.imooc.com" id="a4">immoc4</a>
+                <a href="https://www.imooc.com" id="a5">immoc5</a>
+                <p id="p2">取消</p>
+                <p id="p3">取消</p>
+                <p id="p4">取消</p>
+            </div>
+            <div id="div2">
+                <p id="p5">取消</p>
+                <p id="p6">取消</p>
+                <p id="p7">取消</p>
+            </div>
+            <script>
+            //preventDefault()事件
+                // var a=document.getElementById('a1')
+                // a.addEventListener('click',function(e){
+                //     e.preventDefault()//就不会有默认跳转的行为
+                //     alert(123)
+                // })
+            //2 冒泡流程：DOM树形结构-事件冒泡-阻止冒泡-应用冒泡   
+                // function bindEvent(elem,type,fn){
+                //     elem.addEventListener(type,fn)
+                // }
+                
+                // var body=document.body
+                // bindEvent(body,'click',function(e){
+                //     alert('取消')
+                // })
+                // var p1=document.getElementById('p1')
+                // bindEvent(p1,'click',function(e){
+                //     e.stopPropagation()//阻止了冒泡弹出取消事件
+                //     alert('激活')
+                // })
+            //1 编写一个通用的事件绑定函数
+                var div1=document.getElementById('div1')
+                var a1=document.getElementById('a1')
+                //
+                function bindEvent(elem,type,selector,fn){
+                    if(fn==null){
+                        fn=selector
+                        selector=null
+                    }
+                    elem.addEventListener(type,function(e){
+                        var target
+                        if(selector){
+                            target=e.target
+                            if(target.matches(selector)){//触发的事件满足selector，比如selector是a标签，触发的事件是p就不满足
+                                fn.call(target,e)
+                            }
+                        }else{
+                            fn(e)
+                        }
+                    })
+                }
+                //
+                bindEvent(div1,'click',function(e){
+                    e.preventDefault()
+                    console.log(a1.innerHTML)
+                })
+                bindEvent(div1,'click','a',function(e){
+                    e.preventDefault()
+                    console.log(this.innerHTML)//this指向call中的target
+                })
+            //3 代理-优点：代码简洁/减少浏览器的内存占用
+            //点击不同的a弹出a对应的content
+                // var div1=document.getElementById('div1')
+                // function bindEvent(elem,type,fn){
+                //     elem.addEventListener(type,fn)
+                // }
+                // bindEvent(div1,'click',function(e){
+                //     e.preventDefault()
+                //     var target
+                //     target=e.target
+                //     if(target.nodeName==='A'){
+                //         console.log(target.innerHTML)
+                //     }else{
+                //        return false
+                //     }
+                // })
+                
+            </script>
+        </body>
+</html>
