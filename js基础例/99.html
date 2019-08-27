@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>99乘法表</title>
+    </head>
+    <body>
+        <script>
+            document.write("<table border='1px solid black' cellspacing='0' cellpadding='4'>");
+                document.write("<caption>九九乘法表</caption>")
+            for(var i=1;i<10;i++){
+                document.write("<tr>");
+                    for(var j=1;j<10;j++){
+                        document.write("<td>");
+                        document.write(j+"*"+i+"="+j*i+"&nbsp;&nbsp;&nbsp;&nbsp;");
+                        document.write("</td>");
+                    }
+                document.write("</tr>")
+            }
+            document.write("</table>")
+        </script>
+    </body>
+</html>

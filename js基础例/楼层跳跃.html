@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body,html {
+            height: 100%;
+        }
+        ul {
+            list-style: none;
+            height: 100%;
+        }
+        ul li {
+            height: 100%;
+        }
+        ol {
+            list-style: none;
+            position: fixed;
+            top: 80px;
+            left: 50px;
+        }
+        ol li {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 50px;
+            margin-top: -1px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>鞋子区域</li>
+        <li>袜子区域</li>
+        <li>裤子区域</li>
+        <li>裙子区域</li>
+        <li>帽子区域</li>
+    </ul>
+    <ol>
+        <li>鞋子</li>
+        <li>袜子</li>
+        <li>裤子</li>
+        <li>裙子</li>
+        <li>帽子</li>
+    </ol>
+
+    <script>
+       var oltag=document.getElementsByTagName("ol")[0];
+       var ultag=document.getElementsByTagName("ul")[0];
+       var ulli=ultag.children;
+       var olli=oltag.children;
+       var colorcombine=['pink','blue','yellow','green','red'];
+       var target=0;
+       var leader=0;
+       var timer=null;
+       for(var i=0;i<colorcombine.length;i++){
+           ulli[i].style.background=colorcombine[i];
+           olli[i].style.background=colorcombine[i];
+           olli[i].index=i;
+           olli[i].onclick=function(){
+               target=ulli[this.index].offsetTop;
+               clearInterval(timer);
+               timer=setInterval(function(){
+                   var step=(target-leader)/10;
+                    step=step>0?Math.ceil(step):Math.floor(step);
+                    leader=leader+step;
+                    window.scrollTo(0,leader);
+                    if(Math.abs(target-leader)<=Math.abs(step)){
+                        window.scrollTo(0,target);
+                        clearInterval(timer);
+                    }
+                    },30);
+           }
+       }
+       window.onscroll=function(){
+           leader=scroll().top;
+       }
+       function scroll(){
+           if(window.pageXOffset!=null){//ie9+高标准浏览器window.pageXoffset默认是0
+           return {
+                left:window.pageXOffset,
+                top:window.pageYOffset
+           }
+            
+           }else if(document.compatMode==='CSS1Compat'){//document.compatMode指浏览器的渲染方式，这里标注如果为标准浏览器的渲染方式
+                return{
+                    left:document.documentElement.scrollLeft,
+                    top:document.documentElement.scrollTop
+                    }
+           }
+           return{
+               left:document.body.scrollLeft,
+               top:document.body.scrolltop
+           }
+       }
+    </script>
+</body>
+</html>

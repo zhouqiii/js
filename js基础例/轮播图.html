@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>轮播图</title>
+        <style>
+            img {
+                height: 260px;
+                width: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <img id="img" src="./img/01.JPG" alt="加载中">
+        </div>
+        <script>
+            var count=1;
+            var img=document.getElementById("img");
+            function changeImg(){
+                count++;
+                img.src="./img/0"+count+".JPG";
+                if(count===8){
+                    count=0;
+                }
+            }
+            setInterval("changeImg()",3000)
+        </script>
+    </body>
+</html>
